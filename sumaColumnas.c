@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define TAMX 3
-#define TAMY 6
+#define TAMX 6
+#define TAMY 3
 
 void inizializarF(int matriz[TAMX][TAMY]){
 
@@ -21,25 +21,25 @@ void inizializarF(int matriz[TAMX][TAMY]){
 	}
 }
 
-int sumaF(int matriz[TAMX][TAMY]){
-
-	int suma = 0;
+void sumaF(int matriz[TAMX][TAMY], int suma[3]){
 
 	for (int j = 0; j < TAMY; ++j)
 	{
 		for (int i = 0; i < TAMX; ++i)
 		{
-			suma = suma + matriz[i][j];
+			suma[i] = suma[i] + matriz[i][j];
 		}
 	}
-
-	return suma;
-
 }
 
 int main(int argc, char const *argv[])
 {
-	int matriz[TAMX][TAMY], suma;
+	int matriz[TAMX][TAMY], suma[TAMX];
+	
+	for (int i = 0; i < TAMX; ++i)
+	{
+		suma[i]=0;
+	}
 
 	inizializarF(matriz);
 
@@ -52,9 +52,13 @@ int main(int argc, char const *argv[])
 		printf("\n");
 	}
 
-	suma = sumaF(matriz);
+	sumaF(matriz,suma);
 
-	printf("\nLa suma de la matriz es: %d\n",suma);
+	for (int i = 0; i < TAMX; ++i)
+	{
+		printf("\nLa suma de la columna %d es: %d\n",i+1 ,suma[i]);
+	}
+
 
 	return 0;
 }
